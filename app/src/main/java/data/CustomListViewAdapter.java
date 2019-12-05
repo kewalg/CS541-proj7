@@ -1,8 +1,6 @@
 package data;
 
 import android.app.Activity;
-import android.content.Context;
-import android.text.TextDirectionHeuristic;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,14 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.caloriestracker.FoodList;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import model.*;
+import model.Food;
 
 public class CustomListViewAdapter extends ArrayAdapter<Food> {
 
