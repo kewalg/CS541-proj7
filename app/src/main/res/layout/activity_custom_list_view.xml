@@ -6,10 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".CustomListView">
 
+    <ImageView
+        android:id="@+id/image_lv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/ic_launcher" />
+
     <TextView
         android:id="@+id/tv_foodname_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/image_lv"
         android:text="Food Name"
         android:textSize="25sp" />
 
@@ -25,6 +33,7 @@
         android:id="@+id/tv_cal_num_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/image_lv"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="calories_num"
@@ -36,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_cal_num_lv"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:text="cal."
-        android:textSize="15sp"
-        android:layout_alignParentRight="true" />
+        android:textSize="15sp" />
 
 </RelativeLayout>
