@@ -1,6 +1,7 @@
 package data;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -25,5 +26,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_NAME);
 
         onCreate(db);
+    }
+
+
+    public int getTotalItems() {
+        int totalItems = 0;
+        String query = "SELECT * FROM " + Constants.TABLE_NAME;
+        SQLiteDatabase dba = this.getReadableDatabase();
+        Cursor cursor = dba.rawQuery(query, null);
+
+        totalItems = cursor.getCount();
+
+        return totalItems;
     }
 }
