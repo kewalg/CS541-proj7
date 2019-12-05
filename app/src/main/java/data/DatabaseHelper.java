@@ -1,13 +1,25 @@
 package data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.sql.Array;
+import java.sql.SQLDataException;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import model.Food;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private final ArrayList<Food> foodList = new ArrayList<>();
 
 
     public DatabaseHelper(Context context) {
@@ -64,5 +76,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dba.close();
     }
 
-    
+    public void addFood(Food food) {
+        SQLiteDatabase dba = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Constants.FOOD_NAME, food.getFoodName());
+        values.put(Constants.FOOD_CALORIES_NAME, food.getCalories());
+        values.put(Constants.DATE_NAME, System.currentTimeMillis());
+
+        dba.insert(Constants.TABLE_NAME, null, values);
+
+        Log.v("added food items", "Yes");
+        dba.close();
+    }
+
+    public ArrayList<Food> getFoods() {
+        foodList.clear();
+        SQLiteDatabase dba = this.getReadableDatabase();
+        Cursor cursor = dba.query(Constants.TABLE_NAME, new String[]{Constants.KEY_ID, Constants.FOOD_NAME
+                , Constants.DATE_NAME}, null, null, null, null, Constants.DATE_NAME + " DESC ");
+
+        if (cursor.moveToFirst()) {
+            do {
+                Food food = new Food();
+                food.setFoodName(cursor.getString(cursor.getColumnIndex(Constants.FOOD_NAME)));
+                food.setCalories(cursor.getInt(cursor.getColumnIndex(Constants.FOOD_CALORIES_NAME)));
+                food.setFoodId(cursor.getInt(cursor.getColumnIndex(Constants.KEY_ID)));
+
+                DateFormat dateFormat = DateFormat.getDateInstance();
+                String date = dateFormat.format(new Date(cursor.getLong(cursor.getColumnIndex(Constants.DATE_NAME))).getTime());
+                food.setRecordDate(date);
+                foodList.add(food);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        dba.close();
+
+        return foodList;
+    }
 }
