@@ -3,15 +3,18 @@ package com.example.caloriestracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import data.CustomListViewAdapter;
 import data.DatabaseHelper;
 import model.Food;
+import util.Utils;
 
 public class FoodList extends AppCompatActivity {
 
@@ -40,5 +43,31 @@ public class FoodList extends AppCompatActivity {
         ArrayList<Food> foodsFromDB = dba.getFoods();
         int calsValue = dba.totalCalories();
         int totalItems = dba.getTotalItems();
+
+        String formattedValue = Utils.formatNumber(calsValue);
+        String formattedItems = Utils.formatNumber(totalItems);
+
+        totalCals.setText("Total Calories: " + formattedValue);
+        totalFoods.setText("Total Food: " + formattedItems);
+
+
+        for (int i = 0; i < foodsFromDB.size(); i++) {
+            String name = foodsFromDB.get(i).getFoodName();
+            String dateText = foodsFromDB.get(i).getRecordDate();
+            int cals = foodsFromDB.get(i).getCalories();
+            int foodID = foodsFromDB.get(i).getFoodId();
+
+            Log.v("foods id:", String.valueOf(foodID));
+
+
+            myFood = new Food();
+            myFood.setFoodName(name);
+            myFood.setRecordDate(dateText);
+            myFood.setCalories(cals);
+            myFood.setFoodId(foodID);
+
+            dbFoods.add(myFood);
+        }
+
     }
 }
