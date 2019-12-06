@@ -69,5 +69,11 @@ public class FoodList extends AppCompatActivity {
             dbFoods.add(myFood);
         }
 
+        dba.close();
+
+        foodAdapter = new CustomListViewAdapter(FoodList.this, R.layout.activity_custom_list_view, dbFoods);
+        listView.setAdapter(foodAdapter);
+        foodAdapter.notifyDataSetChanged();
+
     }
 }

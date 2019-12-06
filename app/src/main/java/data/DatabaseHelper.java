@@ -94,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase dba = this.getReadableDatabase();
         Cursor cursor = dba.query(Constants.TABLE_NAME, new String[]{Constants.KEY_ID, Constants.FOOD_NAME
                 , Constants.DATE_NAME}, null, null, null, null, Constants.DATE_NAME + " DESC ");
+        cursor.moveToFirst();
 
         if (cursor.moveToFirst()) {
             do {

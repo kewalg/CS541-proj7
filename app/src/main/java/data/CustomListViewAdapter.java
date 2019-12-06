@@ -1,6 +1,8 @@
 package data;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.caloriestracker.FoodList;
 import com.example.caloriestracker.R;
 
 import java.util.ArrayList;
@@ -66,22 +69,29 @@ public class CustomListViewAdapter extends ArrayAdapter<Food> {
             holder.foodDate = (TextView) row.findViewById(R.id.tv_date_lv);
             holder.foodCalories = (TextView) row.findViewById(R.id.tv_cal_num_lv);
             row.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) row.getTag();
         }
         holder.food = getItem(position);
         holder.foodName.setText(holder.food.getFoodName());
         holder.foodDate.setText(holder.food.getRecordDate());
         holder.foodCalories.setText(String.valueOf(holder.food.getCalories()));
+        final ViewHolder finalHolder = holder;
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent i = new Intent(activity, FoodList.class);
+                Bundle mbundle = new Bundle();
+                mbundle.putSerializable("userObj", finalHolder.food);
+                i.putExtras(mbundle);
+                activity.startActivity(i);
 
             }
         });
 
 
-        return super.getView(position, convertView, parent);
+        return row;
     }
 
     public class ViewHolder {
