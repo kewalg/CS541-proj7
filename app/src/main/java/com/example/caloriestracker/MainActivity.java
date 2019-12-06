@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             foodName.setText("");
             foodCals.setText("");
 
-            //startActivity(new Intent(MainActivity.this, FoodDetail.class));
+            startActivity(new Intent(MainActivity.this, FoodDetail.class));
         }
     }
 }
