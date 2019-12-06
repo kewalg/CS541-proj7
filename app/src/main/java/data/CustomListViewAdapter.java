@@ -73,7 +73,12 @@ public class CustomListViewAdapter extends ArrayAdapter<Food> {
         holder.foodName.setText(holder.food.getFoodName());
         holder.foodDate.setText(holder.food.getRecordDate());
         holder.foodCalories.setText(String.valueOf(holder.food.getCalories()));
-        
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         return super.getView(position, convertView, parent);
