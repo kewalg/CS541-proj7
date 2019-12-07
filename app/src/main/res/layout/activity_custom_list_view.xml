@@ -4,40 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    android:padding="10dp"
     tools:context=".CustomListView">
 
     <ImageView
         android:id="@+id/image_lv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@mipmap/ic_launcher" />
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:padding="20dp"
+        android:src="@drawable/diet" />
 
     <TextView
         android:id="@+id/tv_foodname_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_lv"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@id/image_lv"
         android:text="Food Name"
-        android:textSize="25sp" />
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/tv_date_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_foodname_lv"
-        android:text="Date"
-        android:textSize="25sp" />
+        android:layout_below="@+id/tv_foodname_lv"
+        android:layout_marginTop="6dp"
+        android:layout_toRightOf="@id/image_lv"
+        android:text="Date text"
+        android:textColor="#ffffff"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/tv_cal_num_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_lv"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="calories_num"
-        android:textSize="25sp" />
+        android:text="Calories"
+        android:textColor="#ffffff" />
+
 
     <TextView
         android:id="@+id/tv_cal_lv"
@@ -46,7 +55,9 @@
         android:layout_below="@id/tv_cal_num_lv"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="cal."
+        android:text=">"
+        android:textColor="#ffffff"
         android:textSize="15sp" />
+
 
 </RelativeLayout>

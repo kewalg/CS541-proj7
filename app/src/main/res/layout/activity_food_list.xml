@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/bg1"
     android:layout_height="match_parent"
     tools:context=".FoodList">
 
@@ -10,21 +11,27 @@
         android:id="@+id/total_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total calories: "
-        android:textSize="25sp" />
+        android:layout_marginLeft="4dp"
+        android:paddingRight="10dp"
+        android:text="Total Calories"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/total_fooditems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/total_calories"
-        android:text="Food items: "
-        android:textSize="25sp" />
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/total_calories"
+        android:text="Cal."
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/lv_fooditems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/total_fooditems"
-        android:layout_marginTop="10dp" />
+        android:layout_below="@+id/total_calories"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"/>
 </RelativeLayout>
